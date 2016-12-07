@@ -36,6 +36,7 @@ export default class App extends Component {
   render() {
 
     const barData = [
+      //this will be replaced by the data we pull from our fetch (see above)
       {
         "name": "Series A",
         "values": [

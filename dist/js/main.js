@@ -7528,7 +7528,8 @@
 	//     console.log(this.state)
 	//   })
 	// })
-	console.log('getDummyData complete!');}},{key:'render',value:function render(){var barData=[{"name":"Series A","values":[{"x":1,"y":91}]},{"name":"Series B","values":[{"x":1,"y":91}]}];return _react2.default.createElement('div',null,_react2.default.createElement('h1',null,'hi!'),_react2.default.createElement(_DummyGraph2.default,{getDummyData:this.getDummyData.bind(this)}),_react2.default.createElement(_reactD.BarChart,{data:barData,width:500,height:200,fill:'#3182bd',title:'Bar Chart',yAxisLabel:'time',xAxisLabel:'people'}));}}]);return App;}(_react.Component);exports.default=App;
+	console.log('getDummyData complete!');}},{key:'render',value:function render(){var barData=[//this will be replaced by the data we pull from our fetch (see above)
+	{"name":"Series A","values":[{"x":1,"y":91}]},{"name":"Series B","values":[{"x":1,"y":91}]}];return _react2.default.createElement('div',null,_react2.default.createElement('h1',null,'hi!'),_react2.default.createElement(_DummyGraph2.default,{getDummyData:this.getDummyData.bind(this)}),_react2.default.createElement(_reactD.BarChart,{data:barData,width:500,height:200,fill:'#3182bd',title:'Bar Chart',yAxisLabel:'time',xAxisLabel:'people'}));}}]);return App;}(_react.Component);exports.default=App;
 
 /***/ },
 /* 179 */

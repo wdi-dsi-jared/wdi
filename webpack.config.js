@@ -22,7 +22,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'jwt-bcrypt-demo',
+      title: 'dsi-wdi hackathon',
       xhtml: true,
       inject: false,
       template: require('html-webpack-template'),
