@@ -1,41 +1,16 @@
 import React, { Component } from 'react';
-import DummyGraph from '../DummyGraph/DummyGraph.jsx';
+import Graph from '../Graph/Graph.jsx';
 import { BarChart } from 'react-d3';
+import Search from '../Search/Search.jsx';
 
 export default class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      placeholder: '',
+      data: '',
     }
-  }
-
-  getDummyData() {
-    console.log('getDummyData invoked!')
-    // fetch('/dummyRouteGoesHere', {
-    //   method: 'GET',
-    //   headers : {
-    //     'content-type': 'application/json'
-    //   }
-    // })
-    // .then(r => r.json())
-    // .then((data) => {
-    //   console.log('here is their data!', data)
-    //   this.setState({
-    //     placeholder: data
-    //   }, () => {
-    //     console.log(this.state)
-    //   })
-    // })
-    console.log('getDummyData complete!')
-  }
-
-
-
-  render() {
-
-    const barData = [
+    this.barData = [
       //this will be replaced by the data we pull from our fetch (see above)
       {
         "name": "Series A",
@@ -50,15 +25,26 @@ export default class App extends Component {
         ]
       }
     ];
+  }
 
-    return(
-      <div>
+  getDummyData() {
+    this.setState({
+      data: this.barData
+    })
+    console.log('getDummyData invoked!')
+    console.log('getDummyData complete!')
+  }
+
+  graph() {
+    return this.state.data ? ( <div>
         <h1>hi!</h1>
-        <DummyGraph
+
+        <Graph
+          data={this.state.placeholder}
           getDummyData={this.getDummyData.bind(this)}
         />
         <BarChart
-          data={barData}
+          data={this.barData}
           width={500}
           height={200}
           fill={'#3182bd'}
@@ -66,7 +52,16 @@ export default class App extends Component {
           yAxisLabel='time'
           xAxisLabel='people'
         />
-      </div>
+      </div> ) : <div/>;
+  }
+
+  render() {
+
+    return(
+      <div>
+    <Search getDummyData={this.getDummyData.bind(this)}/>
+    {this.graph()}
+    </div>
     )
   }
 }

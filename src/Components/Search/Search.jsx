@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-export default class DummyGraph extends Component {
+export default class Search extends Component {
 
   render() {
     return(
       <div>
-        <h3>dummy graph goes here</h3>
+        <input type="text" name="input" />
         <button onClick={this.props.getDummyData}>click to get data</button>
       </div>
     )
