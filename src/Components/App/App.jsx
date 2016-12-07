@@ -28,10 +28,10 @@ export default class App extends Component {
   }
 
   getDummyData() {
+    console.log('getDummyData invoked!')
     this.setState({
       data: this.barData
     })
-    console.log('getDummyData invoked!')
     console.log('getDummyData complete!')
   }
 
@@ -49,8 +49,8 @@ export default class App extends Component {
           height={200}
           fill={'#3182bd'}
           title='Bar Chart'
-          yAxisLabel='time'
-          xAxisLabel='people'
+          yAxisLabel='people'
+          xAxisLabel='time'
         />
       </div> ) : <div/>;
   }
@@ -59,9 +59,9 @@ export default class App extends Component {
 
     return(
       <div>
-    <Search getDummyData={this.getDummyData.bind(this)}/>
-    {this.graph()}
-    </div>
+        <Search getDummyData={this.getDummyData.bind(this)}/>
+        {this.graph()}
+      </div>
     )
   }
 }
