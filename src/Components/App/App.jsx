@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BarChart } from 'react-d3';
-import Search from '../Search/Search.jsx';
 import StationDropDown from '../StationDropDown/StationDropDown.jsx'
 
 export default class App extends Component {
@@ -382,21 +381,31 @@ export default class App extends Component {
         'YORK ST',
         'ZEREGA AVE'
       ],
-      selected: ''
+      selected: '',
+      data: ''
     }
     this.changeSelected = this.changeSelected.bind(this);
   }
 
   changeSelected(event) {
     this.setState({
-      data: [{
-        "name": "Relative Crowdedness",
-        "values": Object.keys(this.barData).map((key) => {
-          return {"x" : key, "y" : this.barData[key]}
-        })
-      }]
+      selected: event.target.value
     });
-    selected: event.target.value
+  }
+
+  getData() {
+    return fetch('http://ec2-54-89-253-54.compute-1.amazonaws.com/myapp/make_it_happen')
+    .then(r => r.json())
+    .then((dataset) => {
+      this.setState({
+        data: [{
+          "name": "Relative Crowdedness",
+          "values": Object.keys(dataset).map((key) => {
+            return {"x" : key, "y" : dataset[key]}
+          })
+        }]
+      });
+    })
   }
 
   graph() {
@@ -413,18 +422,9 @@ export default class App extends Component {
       </div> ) : <div/>;
     }
 
-  testPing() {
-    console.log('running test ping')
-    return fetch('http://ec2-54-89-253-54.compute-1.amazonaws.com/myapp/make_it_happen')
-    .then(r => r.json())
-    .then((data) => {
-      console.log(data)
-    })
-  }
   render() {
     return(
       <div>
-        <Search getDummyData={this.getDummyData.bind(this)}/>
         {this.graph()}
         <button onClick={this.testPing}>Test</button>
         <StationDropDown
