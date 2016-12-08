@@ -8,16 +8,6 @@ export default class App extends Component {
     super();
 
     this.state = {
-      data: [
-        {
-          "name": "Predicted Congestion",
-          "values": [
-            { "x": 1, "y":  91},
-            { "x": 2, "y":  101},
-            { "x": 3, "y":  111},
-          ]
-        }
-      ],
       stations: [
         '1 AVE',
         '103 ST',
@@ -397,26 +387,29 @@ export default class App extends Component {
     this.changeSelected = this.changeSelected.bind(this);
   }
 
-  getDummyData() {
-    console.log('hi')
-  }
-
   changeSelected(event) {
     this.setState({
-      selected: event.target.value
-    })
+      data: [{
+        "name": "Relative Crowdedness",
+        "values": Object.keys(this.barData).map((key) => {
+          return {"x" : key, "y" : this.barData[key]}
+        })
+      }]
+    });
+    selected: event.target.value
   }
 
   graph() {
     return this.state.data ? ( <div>
-      <BarChart
-        data={this.state.data}
-        width={500}
-        height={200}
-        fill={'#3182bd'}
-        yAxisLabel='people'
-        xAxisLabel='time'
-      />
+        <BarChart
+          data={this.state.data}
+          width={500}
+          height={200}
+          fill={'#3182bd'}
+          title='Bar Chart'
+          yAxisLabel='business'
+          xAxisLabel='time'
+        />
       </div> ) : <div/>;
     }
 
