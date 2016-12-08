@@ -391,26 +391,34 @@ export default class App extends Component {
         'WOODLAWN ROAD',
         'YORK ST',
         'ZEREGA AVE'
-      ]
+      ],
+      selected: ''
     }
+    this.changeSelected = this.changeSelected.bind(this);
   }
 
   getDummyData() {
     console.log('hi')
   }
 
+  changeSelected(event) {
+    this.setState({
+      selected: event.target.value
+    })
+  }
+
   graph() {
     return this.state.data ? ( <div>
-        <BarChart
-          data={this.state.data}
-          width={500}
-          height={200}
-          fill={'#3182bd'}
-          yAxisLabel='people'
-          xAxisLabel='time'
-        />
+      <BarChart
+        data={this.state.data}
+        width={500}
+        height={200}
+        fill={'#3182bd'}
+        yAxisLabel='people'
+        xAxisLabel='time'
+      />
       </div> ) : <div/>;
-  }
+    }
 
   testPing() {
     console.log('running test ping')
@@ -420,9 +428,7 @@ export default class App extends Component {
       console.log(data)
     })
   }
-
   render() {
-
     return(
       <div>
         <Search getDummyData={this.getDummyData.bind(this)}/>
@@ -430,6 +436,7 @@ export default class App extends Component {
         <button onClick={this.testPing}>Test</button>
         <StationDropDown
           stations={this.state.stations}
+          changeSelected={this.changeSelected}
         />
       </div>
     )

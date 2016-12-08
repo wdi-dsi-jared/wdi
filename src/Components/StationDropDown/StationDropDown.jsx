@@ -14,7 +14,7 @@ export default class StationDropDown extends Component {
 
   render(){
     return (
-      <select className="list-container">
+      <select className="list-container" onChange={(e)=>this.props.changeSelected(e)}>
         {this.makeTags(this.props.stations)}
       </select>
     );
