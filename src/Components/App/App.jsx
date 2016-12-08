@@ -381,15 +381,19 @@ export default class App extends Component {
         'YORK ST',
         'ZEREGA AVE'
       ],
-      selected: '',
+      stationSelected: '',
+      dateSelected: '',
       data: ''
     }
     this.changeSelected = this.changeSelected.bind(this);
   }
 
   changeSelected(event) {
+    let arrayOfElements = event.target.parentElement.childNodes
+    console.log(arrayOfElements)
     this.setState({
-      selected: event.target.value
+      stationSelected: arrayOfElements[2].value,
+      dateSelected: arrayOfElements[3].value,
     });
   }
 
@@ -426,10 +430,15 @@ export default class App extends Component {
     return(
       <div>
         {this.graph()}
-        <button onClick={this.testPing}>Test</button>
+        <button onClick={this.getData.bind(this)}>Test</button>
         <StationDropDown
           stations={this.state.stations}
           changeSelected={this.changeSelected}
+        />
+        <input
+          type="date"
+          id="datePicker"
+          onChange={this.changeSelected.bind(this)}
         />
       </div>
     )
