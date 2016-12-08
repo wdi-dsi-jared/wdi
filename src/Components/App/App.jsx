@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BarChart } from 'react-d3';
-import StationDropDown from '../StationDropDown/StationDropDown.jsx'
+import StationDropDown from '../StationDropDown/StationDropDown.jsx';
+import './App.css';
 
 export default class App extends Component {
   constructor() {
@@ -385,7 +386,6 @@ export default class App extends Component {
       dateSelected: '',
       data: ''
     }
-    this.changeSelected = this.changeSelected.bind(this);
   }
 
   changeSelected(event) {
@@ -412,6 +412,24 @@ export default class App extends Component {
     })
   }
 
+  postData() {
+    // return fetch('http://ec2-54-89-253-54.compute-1.amazonaws.com/myapp/make_it_happen', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/JSON'
+    //   },
+    //   body: {
+    //     date: this.state.dateSelected,
+    //     station: this.state.stationSelected
+    //   }
+    // })
+    console.log(this.state.stationSelected, this.state.dateSelected)
+  }
+
+  formatDate() {
+
+  }
+
   graph() {
     return this.state.data ? ( <div>
         <BarChart
@@ -429,17 +447,21 @@ export default class App extends Component {
   render() {
     return(
       <div>
+        <header>
+          <h3>Crowd Surfer</h3>
+        </header>
         {this.graph()}
         <button onClick={this.getData.bind(this)}>Test</button>
         <StationDropDown
           stations={this.state.stations}
-          changeSelected={this.changeSelected}
+          changeSelected={this.changeSelected.bind(this)}
         />
         <input
           type="date"
           id="datePicker"
           onChange={this.changeSelected.bind(this)}
         />
+        <button onClick={this.postData.bind(this)}>Go!</button>
       </div>
     )
   }

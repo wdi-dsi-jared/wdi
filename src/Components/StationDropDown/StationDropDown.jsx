@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import style from './StationDropDown.css'
+import logo from '../App/Assets/main.jpg'
 
 export default class StationDropDown extends Component {
 
@@ -14,7 +16,7 @@ export default class StationDropDown extends Component {
 
   render(){
     return (
-      <select className="list-container" onChange={(e)=>this.props.changeSelected(e)}>
+      <select className={style['main']} onChange={(e)=>this.props.changeSelected(e)}>
         {this.makeTags(this.props.stations)}
       </select>
     );

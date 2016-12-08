@@ -1,4 +1,4 @@
 # wdi
 
-(2016, 11, 26, 6, 0)
-year month day hour minute (no seconds)
+(2016, 11, 26)
+year month day (no hours, minutes, or seconds)
