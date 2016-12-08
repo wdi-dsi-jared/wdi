@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BarChart } from 'react-d3';
 import StationDropDown from '../StationDropDown/StationDropDown.jsx';
+import Bart from '../Bart/Bart.jsx';
 import './App.css';
 
 export default class App extends Component {
@@ -409,6 +410,12 @@ export default class App extends Component {
           })
         }]
       });
+      let intervalID = setInterval(() => {
+        window.scrollBy(0, 5);
+        if( window.pageYOffset >= window.innerHeight )
+            clearInterval(intervalID);
+        }, 13);
+      // window.scrollTo(0, window.innerHeight);
     })
   }
 
@@ -431,17 +438,15 @@ export default class App extends Component {
   }
 
   graph() {
-    return this.state.data ? ( <div>
-        <BarChart
+    return this.state.data ? ( <div className="Bart" > <Bart
           data={this.state.data}
           width={500}
           height={200}
           fill={'#3182bd'}
-          title='Bar Chart'
+          title='Crowdedness'
           yAxisLabel='business'
-          xAxisLabel='time'
-        />
-      </div> ) : <div/>;
+          xAxisLabel='time'/>
+         </div>) : <div/>;
     }
 
   render() {
