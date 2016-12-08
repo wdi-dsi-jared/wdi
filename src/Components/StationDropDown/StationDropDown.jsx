@@ -5,7 +5,7 @@ export default class StationDropDown extends Component {
   makeTags(array) {
     return array.map((station, index) => {
       return (
-        <option value ={station} id={index}>
+        <option value ={station} key={index}>
           {station}
         </option>
       )
