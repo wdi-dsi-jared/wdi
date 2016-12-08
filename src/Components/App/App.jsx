@@ -450,18 +450,19 @@ export default class App extends Component {
         <header>
           <h3>Crowd Surfer</h3>
         </header>
+        <div className="search">
+          <StationDropDown
+            stations={this.state.stations}
+            changeSelected={this.changeSelected.bind(this)}
+          />
+          <input
+            type="date"
+            id="datePicker"
+            onChange={this.changeSelected.bind(this)}
+          />
+          <button onClick={this.getData.bind(this)}>Go!</button>
+        </div>
         {this.graph()}
-        <button onClick={this.getData.bind(this)}>Test</button>
-        <StationDropDown
-          stations={this.state.stations}
-          changeSelected={this.changeSelected.bind(this)}
-        />
-        <input
-          type="date"
-          id="datePicker"
-          onChange={this.changeSelected.bind(this)}
-        />
-        <button onClick={this.postData.bind(this)}>Go!</button>
       </div>
     )
   }
